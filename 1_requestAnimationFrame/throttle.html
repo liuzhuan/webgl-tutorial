@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throttle</title>
+</head>
+<body style="padding-bottom: 400vh">
+    <h1>节流 Throttle</h1>
+    <script>
+        let enabled = true;
+
+        function expensiveOperation() {
+            console.log('Invoked at', Date.now())
+        }
+
+        window.addEventListener('scroll', () => {
+            if (enabled) {
+                enabled = false;
+                window.requestAnimationFrame(expensiveOperation);
+                window.setTimeout(() => enabled = true, 100);
+            }
+        })
+    </script>
+</body>
+</html>
